@@ -115,7 +115,7 @@ public class Geral extends HttpServlet {
             String senha = request.getParameter("senha");
             boolean logado;
             try {
-                Connection c = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/andrei_pgm4", "root", "testando");
+                Connection c = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:8080/andrei_pgm4", "root", "testando");
                 Statement stmt = c.createStatement();
                 stmt.executeUpdate("create table if not exists usuario (id integer not null, nome varchar(255), senha varchar(255), primary key (id))");
                 stmt.executeUpdate("delete from usuario");
