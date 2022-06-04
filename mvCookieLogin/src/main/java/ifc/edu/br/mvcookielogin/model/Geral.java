@@ -115,7 +115,13 @@ public class Geral extends HttpServlet {
             String senha = request.getParameter("senha");
             boolean logado;
             try {
-                Connection c = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:8080/andrei_pgm4", "root", "testando");
+                Class.forName("com.mysql.cj.jdbc.Driver");
+            } catch (ClassNotFoundException ex) {
+                ex.printStackTrace();
+            }
+            try {
+                
+                Connection c = (Connection) DriverManager.getConnection("jdbc:mysql://51.222.203.22:3306/hylsonco_poo2", "hylsonco_poo2_user", "ifcPoo2!#$");
                 Statement stmt = c.createStatement();
                 stmt.executeUpdate("create table if not exists usuario (id integer not null, nome varchar(255), senha varchar(255), primary key (id))");
                 stmt.executeUpdate("delete from usuario");
@@ -129,6 +135,7 @@ public class Geral extends HttpServlet {
             } catch (SQLException ex) {
                 Logger.getLogger(Geral.class.getName()).log(Level.SEVERE, null, ex);
                 logado = false;
+                ex.printStackTrace();
             }
             if (logado) {
                 sessao.setAttribute("login", login);
